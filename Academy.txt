@@ -1,0 +1,29 @@
+CREATE DATABASE Academy
+USE Academy
+
+CREATE TABLE Groups(
+ Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+ [Name] nvarchar(10) NOT NULL UNIQUE,
+ Rating int NOT NULL CHECK(Rating in(1,2,3,4,5)),
+ [Year] int NOT NULL CHECK([Year] in(1,2,3,4,5))
+)
+
+CREATE TABLE Departments(
+ Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+ Financing money NOT NULL DEFAULT(0) CHECK(Financing>=0),
+ [Name] nvarchar(100) NOT NULL UNIQUE
+)
+
+CREATE TABLE Faculties(
+ Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+ [Name] nvarchar(100) NOT NULL UNIQUE,
+)
+
+CREATE TABLE Teachers(
+ Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+ EmploymentDate date NOT NULL CHECK(Employmentdate>='1990-01-01'),
+ [Name] nvarchar(max) NOT NULL,
+ Premium money NOT NULL DEFAULT(0) CHECK(Premium>=0),
+ Salary money NOT NULL CHECK(Salary>0),
+ Surname nvarchar(max) NOT NULL
+)
